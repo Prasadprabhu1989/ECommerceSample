@@ -33,7 +33,10 @@ export default function CartScreen() {
   };
 
   const selectedItems = cart.filter(item => selectedIds.includes(item.id));
-  const totalItems = selectedItems.length;
+  const totalItems = selectedItems.reduce(
+    (sum, item) => sum + item.quantity,
+    0,
+  );
   const amount = selectedItems.reduce(
     (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
     0,
